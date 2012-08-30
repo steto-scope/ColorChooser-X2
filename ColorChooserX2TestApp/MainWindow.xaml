@@ -1,9 +1,9 @@
 ﻿<Window x:Class="ColorChooserX2TestApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:ccx2="clr-namespace:ColorChooserX2.Views.Components;assembly=ColorChooserX2"
+        xmlns:ccx2="clr-namespace:ColorChooserX2.Views;assembly=ColorChooserX2"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <ccx2:RGBField />
+        <ccx2:ChooserX2 />
     </Grid>
 </Window>
