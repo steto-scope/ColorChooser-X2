@@ -46,19 +46,19 @@ namespace ColorChooserX2.ViewModels
         public double Saturation
         {
             get { return HSV.Saturation; }
-            set { HSV.Saturation = 1-value; RaisePropertyChanged("Saturation"); RaisePropertyChanged("NormalizedHue");  RaisePropertyChanged("SelectedColor"); }
+            set { HSV.Saturation = 1-value; RaisePropertyChanged("Saturation"); RaisePropertyChanged("NormalizedHue");  RaisePropertyChanged("SelectedColor");RaisePropertyChanged("CrosshairPosition"); }
         }
 
         public double NormalizedHue
         {
             get { return HSV.NormalizedHue; }
-            set { HSV.NormalizedHue = value; RaisePropertyChanged("NormalizedHue");  RaisePropertyChanged("SelectedColor");  }
+            set { HSV.NormalizedHue = value; RaisePropertyChanged("NormalizedHue");  RaisePropertyChanged("SelectedColor"); RaisePropertyChanged("CrosshairPosition"); }
         }
 
         public double Value
         {
             get { return HSV.Value; }
-            set { HSV.Value = value; RaisePropertyChanged("Value");  RaisePropertyChanged("SelectedColor");  }
+            set { HSV.Value = value; RaisePropertyChanged("Value");  RaisePropertyChanged("SelectedColor"); RaisePropertyChanged("CrosshairPosition"); }
         }
 
 
@@ -75,12 +75,14 @@ namespace ColorChooserX2.ViewModels
         }
 
 
-        private Point crosshairposition;
-
         public Point CrosshairPosition
         {
-            get { return crosshairposition; }
-            set { crosshairposition = value; RaisePropertyChanged("CrosshairPosition"); }
+            get 
+            {
+                var x = HSV.NormalizedHue * _ir.RenderWidth;
+                var y = HSV.Value * _ir.RenderHeight;
+                return new Point(x-5, _ir.RenderHeight-y-5);
+            }
         }
 
         private ICommand hovercolorchangedcommand;
@@ -127,14 +129,16 @@ namespace ColorChooserX2.ViewModels
                 var hue = p.X / _ir.RenderWidth;
                 var light = p.Y / _ir.RenderHeight;
 
-                HSVColor hsl = new HSVColor(hue,selectedcolor.Saturation,1-light,selectedcolor.Alpha);
-                Color newColor = hsl.ToColor();
+                NormalizedHue = hue;
+                Value = 1 - light;
 
-                SelectedColor = newColor;
-                CrosshairPosition = new Point(p.X - 5, p.Y - 5);
+                //HSVColor hsl = new HSVColor(hue,selectedcolor.Saturation,1-light,selectedcolor.Alpha);
+                //Color newColor = hsl.ToColor();
 
+                //SelectedColor = newColor;
+                
                 if (SelectedColorChanged != null)
-                    SelectedColorChanged(this, new ColorChangedEventArgs(old, newColor));
+                    SelectedColorChanged(this, new ColorChangedEventArgs(old, SelectedColor));
 
                 /*
                 Color? newColor = _ir.GetPixel(p.X, p.Y);

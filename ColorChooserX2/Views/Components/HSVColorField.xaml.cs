@@ -76,7 +76,8 @@ namespace ColorChooserX2.Views.Components
                         double posy = model.CrosshairPosition.Y / e.PreviousSize.Height;
 
                         model.ImageReader = new ImageReader(new UIElement[] { rgbRect, saturationRect }, saturationRect);
-                        model.CrosshairPosition = new Point(e.NewSize.Width * posx, e.NewSize.Height * posy);
+                        //model.CrosshairPosition = new Point(e.NewSize.Width * posx, e.NewSize.Height * posy);
+                        
                     }
                 }
             }

@@ -98,17 +98,17 @@ namespace ColorChooserX2.Views.Components
         static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             SpectrumSlider sl = (SpectrumSlider)d;
-            //sl.CrosshairPosition = new Point(0, (double)e.NewValue * sl.ActualHeight);
+            sl.CrosshairPosition = new Point(0, (1-(double)e.NewValue) * sl.bar.ActualHeight);
             
         }
 
 
         private void OnSelectionChanged(Point p)
         {
-            CrosshairPosition = new Point(0,p.Y);
+            double h = Math.Max(0, Math.Min(bar.ActualHeight, p.Y));
+            CrosshairPosition = new Point(0,h);
             if(bar.ActualHeight!=0)
-                Value = (p.Y / bar.ActualHeight);
-            Console.WriteLine(Value + " | " + bar.ActualHeight + " "+p.Y);
+                Value = (h / bar.ActualHeight);
         }
 
 
