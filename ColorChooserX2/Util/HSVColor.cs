@@ -16,7 +16,7 @@ namespace ColorChooserX2.Util
         /// <summary>
         /// Hue [0.0,1.0]
         /// </summary>
-        public double NormalizedHue { get { return h; } set { if (h >= 0 && h <= 1) h = value; else { if (h < 0) h = 0; else h = 1; } } }
+        public double NormalizedHue { get { return h; } set { h = Math.Max(0, Math.Min(1, value)); } }
         /// <summary>
         /// Hue [0.0,360.0]
         /// </summary>
@@ -24,12 +24,12 @@ namespace ColorChooserX2.Util
         /// <summary>
         /// Sättigungswert {0.0,1.0}
         /// </summary>
-        public double Saturation { get { return s; } set { if (s >= 0 && s <= 1) s = value; else { if (s < 0) s = 0; else s = 1; }} }
+        public double Saturation { get { return s; } set { s = Math.Max(0, Math.Min(1, value)); } }
         /// <summary>
         /// Hellwert [0.0,1.0]
         /// </summary>
-        public double Value { get { return v; } 
-            set { if (v >= 0 && v <= 1) v = value; else { if (v < 0) v = 0; else v = 1; }} }
+        public double Value { get { return v; } set { v = Math.Max(0, Math.Min(1, value)); }
+        }
         /// <summary>
         /// Alpha [0.0,1.0]
         /// </summary>

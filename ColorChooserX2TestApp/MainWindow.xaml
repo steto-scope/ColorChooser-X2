@@ -5,7 +5,7 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid >
         <ccx2:ChooserX2 x:Name="chooser" />
-        <TextBlock Text="Hallo" Margin="278,292,188,-126">
+        <!--<TextBlock Text="Hallo" Margin="278,292,188,-126">
             <TextBlock.Background>
                 <SolidColorBrush Color="{Binding ElementName=chooser, Path=DataContext.SelectedColor}" />
             </TextBlock.Background>
@@ -14,6 +14,6 @@
             <Button.Background>
                 <SolidColorBrush Color="{Binding ElementName=chooser, Path=DataContext.HoverColor}" />
             </Button.Background>
-        </Button>
+        </Button>-->
     </Grid>
 </Window>
