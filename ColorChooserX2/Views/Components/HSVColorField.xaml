@@ -37,7 +37,7 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Ellipse   MouseMove="Grid_MouseMove"  Width="11" Height="11" StrokeThickness="1" VerticalAlignment="Top" Margin="{Binding CrosshairPosition, Converter={StaticResource PointToMarginConverter},Mode=TwoWay}"  HorizontalAlignment="Left">
+        <Ellipse   MouseMove="Grid_MouseMove"  Width="11" Height="11" StrokeThickness="1" VerticalAlignment="Top" Margin="{Binding CrosshairPosition, Converter={StaticResource PointToMarginConverter}}"  HorizontalAlignment="Left">
             <Ellipse.Fill>
                 <SolidColorBrush Color="{Binding SelectedColor}" />
             </Ellipse.Fill>

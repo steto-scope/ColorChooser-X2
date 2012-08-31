@@ -13,7 +13,7 @@ namespace ColorChooserX2.ViewModels
     {
         Color HoverColor { get; set; }
         Color SelectedColor { get; set; }
-        Point CrosshairPosition { get; set; }
+        Point CrosshairPosition { get;  }
         ICommand HoverColorChangedCommand { get;  }
         ICommand SelectedColorChangedCommand { get; }
         event EventHandler<ColorChangedEventArgs> HoverColorChanged;
