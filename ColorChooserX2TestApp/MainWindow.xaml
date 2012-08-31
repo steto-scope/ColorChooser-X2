@@ -9,6 +9,11 @@
             <TextBlock.Background>
                 <SolidColorBrush Color="{Binding ElementName=chooser, Path=DataContext.SelectedColor}" />
             </TextBlock.Background>
-        </TextBlock><Button Height="33" Width="135" Margin="321,266,47,12" Click="Button_Click" />
+        </TextBlock>
+        <Button Height="33" Width="135" Margin="321,266,47,12" Click="Button_Click" >
+            <Button.Background>
+                <SolidColorBrush Color="{Binding ElementName=chooser, Path=DataContext.HoverColor}" />
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

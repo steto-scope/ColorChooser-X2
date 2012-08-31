@@ -24,15 +24,16 @@ namespace ColorChooserX2.Views.Components
         public HSVColorField()
         {
             InitializeComponent();
-            DataContextChanged += new DependencyPropertyChangedEventHandler(HSLColorField_DataContextChanged);
+            Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+            Arrange(new Rect(0,0,DesiredSize.Width,DesiredSize.Height));
+            Loaded += delegate { HSVFieldViewModel model = DataContext as HSVFieldViewModel;
+            if (model != null)
+            {
+                model.Width = rgbRect.ActualWidth;
+                model.Height = rgbRect.ActualHeight;
+            } };
         }
 
-        void HSLColorField_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            HSVFieldViewModel model = DataContext as HSVFieldViewModel;
-            if (model != null)
-                model.ImageReader = new ImageReader(new UIElement[] { rgbRect, saturationRect }, saturationRect);
-        }
 
         
 
@@ -75,8 +76,8 @@ namespace ColorChooserX2.Views.Components
                         double posx = model.CrosshairPosition.X / e.PreviousSize.Width;
                         double posy = model.CrosshairPosition.Y / e.PreviousSize.Height;
 
-                        model.ImageReader = new ImageReader(new UIElement[] { rgbRect, saturationRect }, saturationRect);
-                        //model.CrosshairPosition = new Point(e.NewSize.Width * posx, e.NewSize.Height * posy);
+                        model.Width = rgbRect.ActualWidth;
+                        model.Height = rgbRect.ActualHeight;
                         
                     }
                 }

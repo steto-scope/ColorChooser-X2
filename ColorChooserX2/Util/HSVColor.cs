@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace ColorChooserX2.Util
 {
-    public class HSVColor : INotifyPropertyChanged
+    public class HSVColor 
     {
         private double a;
         private double h;
@@ -20,16 +20,16 @@ namespace ColorChooserX2.Util
         /// <summary>
         /// Hue [0.0,360.0]
         /// </summary>
-        public double Hue { get { return h * 360; } set { NormalizedHue = (value % 360) / 360.0; RaisePropertyChanged("Hue"); } }
+        public double Hue { get { return h * 360; } set { NormalizedHue = (value % 360) / 360.0;} }
         /// <summary>
         /// Sättigungswert {0.0,1.0}
         /// </summary>
-        public double Saturation { get { return s; } set { if (s >= 0 && s <= 1) s = value; else { if (s < 0) s = 0; else s = 1; } RaisePropertyChanged("Saturation"); } }
+        public double Saturation { get { return s; } set { if (s >= 0 && s <= 1) s = value; else { if (s < 0) s = 0; else s = 1; }} }
         /// <summary>
         /// Hellwert [0.0,1.0]
         /// </summary>
         public double Value { get { return v; } 
-            set { if (v >= 0 && v <= 1) v = value; else { if (v < 0) v = 0; else v = 1; } RaisePropertyChanged("Value"); } }
+            set { if (v >= 0 && v <= 1) v = value; else { if (v < 0) v = 0; else v = 1; }} }
         /// <summary>
         /// Alpha [0.0,1.0]
         /// </summary>
@@ -37,7 +37,7 @@ namespace ColorChooserX2.Util
         /// <summary>
         /// Alpha [0.0,255.0]
         /// </summary>
-        public double Alpha { get { return a * 255; } set { a = Math.Max(0, Math.Min(255, value)) / 255.0; RaisePropertyChanged("Alpha"); } }
+        public double Alpha { get { return a * 255; } set { a = Math.Max(0, Math.Min(255, value)) / 255.0; } }
 
         struct ColorPair
         {
@@ -152,21 +152,5 @@ namespace ColorChooserX2.Util
             return rgb;
         }
 
-        /// <summary>
-        /// Gibt den RGB-Farbwert zurück
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            return ToColor().ToString();
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void RaisePropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-        }
     }
 }
