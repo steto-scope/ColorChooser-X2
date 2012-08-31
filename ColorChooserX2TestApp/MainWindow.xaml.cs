@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ColorChooserX2.ViewModels;
 
 namespace ColorChooserX2TestApp
 {
@@ -22,6 +23,12 @@ namespace ColorChooserX2TestApp
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            IColorChooser c = (IColorChooser)chooser.DataContext;
+            c.SelectedColor = Colors.Salmon;
         }
     }
 }

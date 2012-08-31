@@ -19,26 +19,26 @@ namespace ColorChooserX2.Views.Components
     /// <summary>
     /// Interaktionslogik für RGBColorField.xaml
     /// </summary>
-    public partial class RGBColorField : UserControl
+    public partial class HSVColorField : UserControl
     {
-        public RGBColorField()
+        public HSVColorField()
         {
             InitializeComponent();
-            DataContextChanged += new DependencyPropertyChangedEventHandler(RGBColorField_DataContextChanged);
+            DataContextChanged += new DependencyPropertyChangedEventHandler(HSLColorField_DataContextChanged);
         }
 
-        void RGBColorField_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        void HSLColorField_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            RGBFieldViewModel model = DataContext as RGBFieldViewModel;
+            HSVFieldViewModel model = DataContext as HSVFieldViewModel;
             if (model != null)
                 model.ImageReader = new ImageReader(new UIElement[] { rgbRect, saturationRect }, saturationRect);
         }
 
         
 
-        private void Grid_MouseMove(object sender, MouseEventArgs e)
+        protected void Grid_MouseMove(object sender, MouseEventArgs e)
         {
-            Point p = e.GetPosition((IInputElement)sender);
+            Point p = e.GetPosition(rgbRect);
             IColorChooser model = DataContext as IColorChooser;
             if (model != null)
             {
@@ -53,9 +53,9 @@ namespace ColorChooserX2.Views.Components
         public IEnumerable<UIElement> Field { get; set; }
 
 
-        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        protected void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-             Point p = e.GetPosition((IInputElement)sender);
+             Point p = e.GetPosition(rgbRect);
             IColorChooser model = DataContext as IColorChooser;
             if (model != null)
             {
@@ -63,13 +63,13 @@ namespace ColorChooserX2.Views.Components
             }
         }
 
-        private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
+        protected void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             try
             {
                 if (e.NewSize.Width != double.NaN && e.NewSize.Height != double.NaN && e.PreviousSize.Height > 0 && e.PreviousSize.Width > 0)
                 {
-                    RGBFieldViewModel model = DataContext as RGBFieldViewModel;
+                    HSVFieldViewModel model = DataContext as HSVFieldViewModel;
                     if (model != null)
                     {
                         double posx = model.CrosshairPosition.X / e.PreviousSize.Width;

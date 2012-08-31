@@ -16,7 +16,7 @@ namespace ColorChooserX2.Views
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            if (item is RGBFieldViewModel)
+            if (item is HSVFieldViewModel)
             {
                 Selected = RGBFieldTemplate;
                 return RGBFieldTemplate;

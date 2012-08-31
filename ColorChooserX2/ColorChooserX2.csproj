@@ -49,16 +49,22 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\ColorExtension.cs" />
     <Compile Include="Util\ColorChangedEventArgs.cs" />
+    <Compile Include="Util\HSVColor.cs" />
     <Compile Include="Util\ImageReader.cs" />
     <Compile Include="Util\RelayCommand.cs" />
     <Compile Include="ViewModels\IColorChooser.cs" />
-    <Compile Include="ViewModels\RGBFieldViewModel.cs" />
+    <Compile Include="ViewModels\HSVFieldViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\ChooserX2TemplateSelector.cs" />
-    <Compile Include="Views\Components\RGBColorField.xaml.cs">
-      <DependentUpon>RGBColorField.xaml</DependentUpon>
+    <Compile Include="Views\Components\HSVColorField.xaml.cs">
+      <DependentUpon>HSVColorField.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Components\SpectrumSlider.xaml.cs">
+      <DependentUpon>SpectrumSlider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Converter\HueToColorConverter.cs" />
     <Compile Include="Views\Converter\PointToMarginConverter.cs" />
     <Compile Include="Views\Converter\PositionToStrokeColorConverter.cs" />
     <Page Include="Views\ChooserX2.xaml">
@@ -69,7 +75,11 @@
       <DependentUpon>ChooserX2.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\Components\RGBColorField.xaml">
+    <Page Include="Views\Components\HSVColorField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Components\SpectrumSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -5,15 +5,33 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:c="clr-namespace:ColorChooserX2.Views.Components"
              xmlns:v="clr-namespace:ColorChooserX2.Views"
+             xmlns:conv="clr-namespace:ColorChooserX2.Views.Converter"
              mc:Ignorable="d" Background="Transparent"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <ContentPresenter Content="{Binding}" Name="content">
+        <Grid.Resources>
+            <conv:HueToColorConverter x:Key="HueToColorConverter" />
+        </Grid.Resources>
+        <ContentPresenter Content="{Binding}" Name="content" >
             <ContentPresenter.ContentTemplateSelector>
                 <v:ChooserX2TemplateSelector>
                     <v:ChooserX2TemplateSelector.RGBFieldTemplate>
                         <DataTemplate>
-                            <c:RGBColorField DataContext="{Binding}" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="30" />
+                                </Grid.ColumnDefinitions>
+                                <c:HSVColorField DataContext="{Binding}"  Grid.Column="0"/>
+                                <c:SpectrumSlider VerticalAlignment="Stretch" HorizontalAlignment="Center" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.Saturation,Mode=TwoWay}" Grid.Column="1">
+                                    <c:SpectrumSlider.BarGradient>
+                                        <LinearGradientBrush>
+                                            <GradientStop Color="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.NormalizedHue, Converter={StaticResource HueToColorConverter}}" Offset="0" />
+                                            <GradientStop Color="#808080" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </c:SpectrumSlider.BarGradient>
+                                </c:SpectrumSlider>
+                            </Grid>
                         </DataTemplate>
                     </v:ChooserX2TemplateSelector.RGBFieldTemplate>
                 </v:ChooserX2TemplateSelector>

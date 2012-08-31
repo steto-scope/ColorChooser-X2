@@ -6,10 +6,11 @@ using System.Windows.Media;
 using System.Windows;
 using System.Windows.Input;
 using ColorChooserX2.Util;
+using ColorChooserX2.Extensions;
 
 namespace ColorChooserX2.ViewModels
 {
-    public class RGBFieldViewModel : ViewModelBase, IColorChooser
+    public class HSVFieldViewModel : ViewModelBase, IColorChooser
     {
         private ImageReader _ir;
 
@@ -27,32 +28,48 @@ namespace ColorChooserX2.ViewModels
             set { hovercolor = value;  RaisePropertyChanged("HoverColor"); }
         }
 
-        private Color selectedcolor;
+        public HSVColor HSV
+        {
+            get { return selectedcolor; }
+            set { selectedcolor = value; RaisePropertyChanged("SelectedColor"); }
+        }
+
+        private HSVColor selectedcolor;
 
         public Color SelectedColor
         {
-            get { return selectedcolor; }
-            set { selectedcolor = value; bg.Color = value; RaisePropertyChanged("SelectedColor");  RaisePropertyChanged("SelectedColorBrush"); }
+            get { return selectedcolor.ToColor(); }
+            set { selectedcolor = value.ToHSV(); RaisePropertyChanged("SelectedColor"); RaisePropertyChanged("NormalizedHue"); RaisePropertyChanged("Saturation"); RaisePropertyChanged("CrosshairPosition"); }
         }
 
-        private SolidColorBrush bg;
-        public SolidColorBrush SelectedColorBrush
+
+        public double Saturation
         {
-            get
-            {
-                if (bg == null)
-                    bg = new SolidColorBrush(Colors.Transparent);
-                return bg;
-            }
+            get { return HSV.Saturation; }
+            set { HSV.Saturation = 1-value; RaisePropertyChanged("Saturation"); RaisePropertyChanged("NormalizedHue");  RaisePropertyChanged("SelectedColor"); }
         }
+
+        public double NormalizedHue
+        {
+            get { return HSV.NormalizedHue; }
+            set { HSV.NormalizedHue = value; RaisePropertyChanged("NormalizedHue");  RaisePropertyChanged("SelectedColor");  }
+        }
+
+        public double Value
+        {
+            get { return HSV.Value; }
+            set { HSV.Value = value; RaisePropertyChanged("Value");  RaisePropertyChanged("SelectedColor");  }
+        }
+
+
 
         private SolidColorBrush chstroke;
         public SolidColorBrush CrosshairStrokeBrush
         {
             get
             {
-                if (bg == null)
-                    bg = new SolidColorBrush(Colors.Black);
+                if (chstroke == null)
+                    chstroke = new SolidColorBrush(Colors.Black);
                 return chstroke;
             }
         }
@@ -95,6 +112,11 @@ namespace ColorChooserX2.ViewModels
             }
         }
 
+        public HSVFieldViewModel()
+        {
+            HSV = new HSVColor(0, 1, 1, 255);
+        }
+
         private void OnSelectedColorChanged(object parameter)
         {
             if (parameter is Point && _ir!=null)
@@ -102,6 +124,19 @@ namespace ColorChooserX2.ViewModels
                 Point p = (Point)parameter;
                 Color old = SelectedColor;
 
+                var hue = p.X / _ir.RenderWidth;
+                var light = p.Y / _ir.RenderHeight;
+
+                HSVColor hsl = new HSVColor(hue,selectedcolor.Saturation,1-light,selectedcolor.Alpha);
+                Color newColor = hsl.ToColor();
+
+                SelectedColor = newColor;
+                CrosshairPosition = new Point(p.X - 5, p.Y - 5);
+
+                if (SelectedColorChanged != null)
+                    SelectedColorChanged(this, new ColorChangedEventArgs(old, newColor));
+
+                /*
                 Color? newColor = _ir.GetPixel(p.X, p.Y);
                 if (newColor.HasValue)
                 {
@@ -110,7 +145,7 @@ namespace ColorChooserX2.ViewModels
 
                     if (SelectedColorChanged != null)
                         SelectedColorChanged(this, new ColorChangedEventArgs(old, SelectedColor));
-                }
+                }*/
             }
         }
 
