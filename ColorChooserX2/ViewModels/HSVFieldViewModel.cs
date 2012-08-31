@@ -12,15 +12,17 @@ namespace ColorChooserX2.ViewModels
 {
     public class HSVFieldViewModel : ViewModelBase, IColorChooser
     {
+        private double width;
         public double Width
         {
-            get;
-            set;
+            get { return width; }
+            set { width = value; RaisePropertyChanged("CrosshairPosition"); }
         }
+        private double height;
         public double Height
         {
-            get;
-            set;
+            get { return height; }
+            set { height = value; RaisePropertyChanged("CrosshairPosition"); }
         }
 
         private HSVColor hovercolor;
@@ -71,7 +73,8 @@ namespace ColorChooserX2.ViewModels
             {
                 var x = HSV.NormalizedHue * Width;
                 var y = HSV.Value * Height;
-                return new Point(x-5, Height-y-5);
+                //Console.WriteLine((15 + x - 5) + "  " + (15 + Height - 5)+ " "+HSV.NormalizedHue);
+                return new Point(15+x-5, 15+Height-y-5);
             }
         }
 

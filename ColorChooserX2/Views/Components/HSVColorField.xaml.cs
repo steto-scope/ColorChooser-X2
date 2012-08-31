@@ -24,8 +24,6 @@ namespace ColorChooserX2.Views.Components
         public HSVColorField()
         {
             InitializeComponent();
-            Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-            Arrange(new Rect(0,0,DesiredSize.Width,DesiredSize.Height));
             Loaded += delegate { HSVFieldViewModel model = DataContext as HSVFieldViewModel;
             if (model != null)
             {
@@ -51,12 +49,11 @@ namespace ColorChooserX2.Views.Components
             }
         }
 
-        public IEnumerable<UIElement> Field { get; set; }
-
 
         protected void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
              Point p = e.GetPosition(rgbRect);
+             p = new Point(Math.Max(0, p.X), Math.Max(0, p.Y));
             IColorChooser model = DataContext as IColorChooser;
             if (model != null)
             {
@@ -87,5 +84,6 @@ namespace ColorChooserX2.Views.Components
                 
             }
         }
+
     }
 }

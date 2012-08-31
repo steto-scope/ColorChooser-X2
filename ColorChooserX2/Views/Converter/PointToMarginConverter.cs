@@ -14,7 +14,7 @@ namespace ColorChooserX2.Views.Converter
             if (value != null && value is Point)
             {
                 Point p = (Point)value;
-                return new Thickness(p.X, p.Y, 0, 0);
+                return new Thickness(p.X , p.Y+(parameter!=null ? double.Parse((string)parameter):0), 0, 0);
             }
             return Binding.DoNothing;
         }
@@ -24,7 +24,7 @@ namespace ColorChooserX2.Views.Converter
             if (value != null && value is Thickness)
             {
                 Thickness m = (Thickness)value;
-                return new Point(m.Top, m.Left);
+                return new Point(m.Top-(parameter!=null ? double.Parse((string)parameter):0), m.Left);
             }
             return Binding.DoNothing;
         }

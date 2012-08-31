@@ -20,10 +20,10 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="45" />
                                 </Grid.ColumnDefinitions>
                                 <c:HSVColorField DataContext="{Binding}"  Grid.Column="0"/>
-                                <c:SpectrumSlider VerticalAlignment="Stretch" HorizontalAlignment="Center" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.Saturation,Mode=TwoWay}" Grid.Column="1">
+                                <c:SpectrumSlider Margin="0,8,0,8" VerticalAlignment="Stretch" HorizontalAlignment="Center" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.Saturation,Mode=TwoWay}" Grid.Column="1">
                                     <c:SpectrumSlider.BarGradient>
                                         <LinearGradientBrush>
                                             <GradientStop Color="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.NormalizedHue, Converter={StaticResource HueToColorConverter}}" Offset="0" />

@@ -6,16 +6,15 @@
              xmlns:conv="clr-namespace:ColorChooserX2.Views.Converter"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="30">
-    
-        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" SizeChanged="Grid_SizeChanged">
-            <Grid.Resources>
-                <conv:PointToMarginConverter x:Key="PointToMarginConverter" />
-            </Grid.Resources>
-            <Border BorderBrush="Black" BorderThickness="1" Margin="0,6,0,6">
-                <Rectangle Name="bar" Width="20" Fill="{Binding BarGradient}" MouseMove="Rectangle_MouseMove" MouseDown="Rectangle_MouseDown"/>
-            </Border>
-        <Polygon Stroke="White" StrokeThickness="1" Points="0,0 0,12 6,6"  Fill="Black" HorizontalAlignment="Left" Margin="{Binding CrosshairPosition, Converter={StaticResource PointToMarginConverter},Mode=TwoWay}" />
-        <Polygon Stroke="White" StrokeThickness="1" Points="0,6 6,0 6,12 " Fill="Black" HorizontalAlignment="Right"  Margin="{Binding CrosshairPosition, Converter={StaticResource PointToMarginConverter},Mode=TwoWay}" />
-        </Grid> 
+    <Grid Background="Transparent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" SizeChanged="Grid_SizeChanged" PreviewMouseMove="Rectangle_MouseMove" PreviewMouseDown="Rectangle_MouseDown">
+        <Grid.Resources>
+            <conv:PointToMarginConverter x:Key="PointToMarginConverter" />
+        </Grid.Resources>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="4,10,4,10">
+            <Rectangle Name="bar" Width="20" Fill="{Binding BarGradient}" />
+        </Border>
+        <Polygon Stroke="White" StrokeThickness="1" Points="0,0 0,12 6,6"  Fill="Black" HorizontalAlignment="Left" Margin="{Binding CrosshairPosition, Converter={StaticResource PointToMarginConverter},ConverterParameter=4, Mode=TwoWay}" />
+        <Polygon Stroke="White" StrokeThickness="1" Points="0,6 6,0 6,12 " Fill="Black" HorizontalAlignment="Right"  Margin="{Binding CrosshairPosition, Converter={StaticResource PointToMarginConverter},ConverterParameter=4,Mode=TwoWay}" />
+    </Grid> 
     
 </UserControl>
