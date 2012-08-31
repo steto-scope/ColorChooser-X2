@@ -24,10 +24,9 @@ namespace ColorChooserX2.Views
         public ChooserX2()
         {
             InitializeComponent();
-            DataContext = new RGBFieldViewModel() { /*ImageReader=new ImageReader(new UIElement[] { rgbRect, saturationRect }, saturationRect)*/};
+            DataContext = new HSVFieldViewModel() { /*ImageReader=new ImageReader(new UIElement[] { rgbRect, saturationRect }, saturationRect)*/};
         }
 
-        
 
 
         

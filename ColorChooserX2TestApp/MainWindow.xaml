@@ -3,7 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ccx2="clr-namespace:ColorChooserX2.Views;assembly=ColorChooserX2"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <ccx2:ChooserX2 />
+    <Grid >
+        <ccx2:ChooserX2 x:Name="chooser" />
+        <TextBlock Text="Hallo" Margin="278,292,188,-126">
+            <TextBlock.Background>
+                <SolidColorBrush Color="{Binding ElementName=chooser, Path=DataContext.SelectedColor}" />
+            </TextBlock.Background>
+        </TextBlock><Button Height="33" Width="135" Margin="321,266,47,12" Click="Button_Click" />
     </Grid>
 </Window>
