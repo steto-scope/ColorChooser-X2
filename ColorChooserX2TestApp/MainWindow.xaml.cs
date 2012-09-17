@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ColorChooserX2.ViewModels;
+using ColorChooserX2.Themes;
 
 namespace ColorChooserX2TestApp
 {
@@ -31,6 +32,7 @@ namespace ColorChooserX2TestApp
             IColorChooser c = (IColorChooser)chooser.DataContext;
             c.SelectedColor = Color.FromArgb(128, 18, 200, 155);
             ((HSVFieldViewModel)c).EnableAlphaChannel = true;
+            chooser.Theme = new DarkTheme();
         }
     }
 }

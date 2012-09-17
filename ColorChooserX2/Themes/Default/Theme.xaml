@@ -1,26 +1,22 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
-    <SolidColorBrush Color="White" x:Key="SpectrumSliderCrosshairBrush" />
-    <SolidColorBrush Color="Black" x:Key="SpectrumSliderCrosshairStrokeBrush" />
-    <SolidColorBrush Color="#252525" x:Key="ChooserBackgroundBrush" />
     
+    
+    <SolidColorBrush Color="Black" x:Key="SpectrumSliderCrosshairBrush" />
+    <SolidColorBrush Color="White" x:Key="SpectrumSliderCrosshairStrokeBrush" />
+
     <Style TargetType="{x:Type Polygon}">
         <Setter Property="Fill" Value="{StaticResource SpectrumSliderCrosshairBrush}" />
         <Setter Property="Stroke" Value="{StaticResource SpectrumSliderCrosshairStrokeBrush}" />
     </Style>
     <Style TargetType="{x:Type Grid}" >
-        <Setter Property="Background" Value="{StaticResource ChooserBackgroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
     </Style>
     <Style TargetType="{x:Type Border}" >
         <Setter Property="BorderBrush" Value="{StaticResource SpectrumSliderCrosshairBrush}" />
         <Setter Property="BorderThickness" Value="1" />
     </Style>
     <Style TargetType="{x:Type Border}" x:Key="ColorChooserControlBorderStyle" >
-        <Setter Property="BitmapEffect">
-            <Setter.Value>
-                <DropShadowBitmapEffect Color="Black" Direction="320" ShadowDepth="12" Opacity=".8" Softness="9" />
-            </Setter.Value>
-        </Setter>
+        
     </Style>
 </ResourceDictionary>
