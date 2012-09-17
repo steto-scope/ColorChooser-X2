@@ -139,7 +139,7 @@ namespace ColorChooserX2.Views.Components
                         CrosshairPosition = new Point(e.NewSize.Width * posx, e.NewSize.Height * posy);
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 
             }

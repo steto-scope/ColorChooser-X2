@@ -9,6 +9,9 @@ using ColorChooserX2.Util;
 
 namespace ColorChooserX2.ViewModels
 {
+    /// <summary>
+    /// Color Chooser View Model Interface. Basic Members supported by all Choosers
+    /// </summary>
     public interface IColorChooser
     {
         Color HoverColor { get; }

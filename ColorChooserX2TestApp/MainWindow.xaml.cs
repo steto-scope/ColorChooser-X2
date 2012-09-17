@@ -27,12 +27,5 @@ namespace ColorChooserX2TestApp
             
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            IColorChooser c = (IColorChooser)chooser.DataContext;
-            c.SelectedColor = Color.FromArgb(128, 18, 200, 155);
-            ((HSVFieldViewModel)c).EnableAlphaChannel = true;
-            chooser.Theme = new DarkTheme();
-        }
     }
 }

@@ -7,6 +7,9 @@ using System.ComponentModel;
 
 namespace ColorChooserX2.Util
 {
+    /// <summary>
+    /// Represents a Color in HSV-Space
+    /// </summary>
     public class HSVColor 
     {
         private double a;
@@ -39,12 +42,22 @@ namespace ColorChooserX2.Util
         /// </summary>
         public double Alpha { get { return a * 255; } set { a = Math.Max(0, Math.Min(255, value)) / 255.0; } }
 
+        /// <summary>
+        /// Used internal
+        /// </summary>
         struct ColorPair
         {
             public double val;
             public string channel;
         }
 
+        /// <summary>
+        /// New Color
+        /// </summary>
+        /// <param name="normalizedHue"></param>
+        /// <param name="saturation"></param>
+        /// <param name="lightness"></param>
+        /// <param name="alpha"></param>
         public HSVColor(double normalizedHue, double saturation, double lightness, double alpha)
         {
             NormalizedHue = normalizedHue;
@@ -54,7 +67,7 @@ namespace ColorChooserX2.Util
         }
 
         /// <summary>
-        /// Konvertiert eine (RGB)Farbe System.Windows.Media.Color in den HSL-Farbraum. Alphakanal geht verloren
+        /// Converts a RGB-Color to a HSV-Color (ARGB-Channels)
         /// </summary>
         /// <param name="rgb"></param>
         /// <returns></returns>
@@ -110,7 +123,7 @@ namespace ColorChooserX2.Util
         }
 
         /// <summary>
-        /// Generiert aus dem HSL-Farb-Objekt wieder ein (RGB)Color-Objekt
+        /// Generates a ARGB-Color from the HSV-Color
         /// </summary>
         /// <returns></returns>
         public Color ToColor()

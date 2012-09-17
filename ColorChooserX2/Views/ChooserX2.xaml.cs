@@ -31,6 +31,21 @@ namespace ColorChooserX2.Views
         }
 
         /// <summary>
+        /// Gets the DataContext as IColorChooser
+        /// </summary>
+        public IColorChooser Model
+        {
+            get
+            {
+                return DataContext as IColorChooser;
+            }
+            set
+            {
+                DataContext = value;
+            }
+        }
+
+        /// <summary>
         /// Theme Dependency Property
         /// </summary>
         public static readonly DependencyProperty ThemeProperty =
