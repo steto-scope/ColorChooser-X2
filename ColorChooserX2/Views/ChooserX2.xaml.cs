@@ -24,8 +24,10 @@ namespace ColorChooserX2.Views
     {
         public ChooserX2()
         {
+            Theme = new DarkTheme();
             InitializeComponent();
             DataContext = new HSVFieldViewModel() { /*ImageReader=new ImageReader(new UIElement[] { rgbRect, saturationRect }, saturationRect)*/};
+            
         }
 
         /// <summary>
@@ -64,10 +66,9 @@ namespace ColorChooserX2.Views
             if (oldTheme != null)
             {
                 var resourceDictionaryToRemove =
-                    Application.Current.Resources.MergedDictionaries.FirstOrDefault(r => r.Source == oldTheme.GetResourceUri());
+                    Resources.MergedDictionaries.FirstOrDefault(r => r.Source == oldTheme.GetResourceUri());
                 if (resourceDictionaryToRemove != null)
-                    Application.Current.Resources.MergedDictionaries.Remove(
-                        resourceDictionaryToRemove);
+                    Resources.MergedDictionaries.Remove(resourceDictionaryToRemove);
             }
 
             if (newTheme != null)

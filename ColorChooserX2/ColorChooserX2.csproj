@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Extensions\ColorExtension.cs" />
     <Compile Include="Themes\Dark\DarkTheme.cs" />
+    <Compile Include="Themes\Default\DefaultTheme.cs" />
     <Compile Include="Themes\Theme.cs" />
     <Compile Include="Util\ColorChangedEventArgs.cs" />
     <Compile Include="Util\HSVColor.cs" />
@@ -73,6 +74,10 @@
     <Compile Include="Views\Converter\PositionToStrokeColorConverter.cs" />
     <Compile Include="Views\Converter\ValueToColorConverter.cs" />
     <Page Include="Themes\Dark\Theme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Default\Theme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
