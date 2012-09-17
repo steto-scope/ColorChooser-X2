@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush Color="White" x:Key="SpectrumSliderCrosshairBrush" />
+    <SolidColorBrush Color="Black" x:Key="SpectrumSliderCrosshairStrokeBrush" />
+    <SolidColorBrush Color="#252525" x:Key="ChooserBackgroundBrush" />
+    
+    <Style TargetType="{x:Type Polygon}">
+        <Setter Property="Fill" Value="{StaticResource SpectrumSliderCrosshairBrush}" />
+        <Setter Property="Stroke" Value="{StaticResource SpectrumSliderCrosshairStrokeBrush}" />
+    </Style>
+    <Style TargetType="{x:Type Grid}" >
+        <Setter Property="Background" Value="{StaticResource ChooserBackgroundBrush}" />
+    </Style>
+    <Style TargetType="{x:Type Border}" >
+        <Setter Property="BorderBrush" Value="{StaticResource SpectrumSliderCrosshairBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+</ResourceDictionary>

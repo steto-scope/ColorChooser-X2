@@ -36,7 +36,7 @@ namespace ColorChooserX2.ViewModels
         public HSVColor HSV
         {
             get { return selectedcolor; }
-            set { selectedcolor = value; RaisePropertyChanged("SelectedColor"); }
+            set { selectedcolor = value; RaisePropertyChanged("SelectedColor"); RaisePropertyChanged("HSV");}
         }
 
         private HSVColor selectedcolor;
@@ -44,32 +44,32 @@ namespace ColorChooserX2.ViewModels
         public Color SelectedColor
         {
             get { return selectedcolor.ToColor(); }
-            set { selectedcolor = value.ToHSV(); RaisePropertyChanged("SelectedColor"); RaisePropertyChanged("NormalizedHue"); RaisePropertyChanged("Saturation"); RaisePropertyChanged("NormalizedAlpha"); RaisePropertyChanged("CrosshairPosition"); }
+            set { selectedcolor = value.ToHSV(); RaisePropertyChanged("SelectedColor"); RaisePropertyChanged("NormalizedHue"); RaisePropertyChanged("Saturation"); RaisePropertyChanged("NormalizedAlpha");RaisePropertyChanged("HSV"); RaisePropertyChanged("CrosshairPosition"); }
         }
 
 
         public double Saturation
         {
             get { return HSV.Saturation; }
-            set { HSV.Saturation = 1-value; RaisePropertyChanged("Saturation"); RaisePropertyChanged("NormalizedHue");  RaisePropertyChanged("SelectedColor");RaisePropertyChanged("CrosshairPosition"); }
+            set { HSV.Saturation = 1-value; RaisePropertyChanged("Saturation"); RaisePropertyChanged("NormalizedHue");  RaisePropertyChanged("SelectedColor");RaisePropertyChanged("HSV");RaisePropertyChanged("CrosshairPosition"); }
         }
 
         public double NormalizedHue
         {
             get { return HSV.NormalizedHue; }
-            set { HSV.NormalizedHue = value; RaisePropertyChanged("NormalizedHue");  RaisePropertyChanged("SelectedColor"); RaisePropertyChanged("CrosshairPosition"); }
+            set { HSV.NormalizedHue = value; RaisePropertyChanged("NormalizedHue");  RaisePropertyChanged("SelectedColor");RaisePropertyChanged("HSV"); RaisePropertyChanged("CrosshairPosition"); }
         }
 
         public double NormalizedAlpha
         {
             get { return HSV.NormalizedAlpha; }
-            set { HSV.NormalizedAlpha = 1-value; RaisePropertyChanged("NormalizedAlpha"); RaisePropertyChanged("SelectedColor"); RaisePropertyChanged("CrosshairPosition"); }
+            set { HSV.NormalizedAlpha = 1-value; RaisePropertyChanged("NormalizedAlpha"); RaisePropertyChanged("SelectedColor"); RaisePropertyChanged("HSV");RaisePropertyChanged("CrosshairPosition"); }
         }
 
         public double Value
         {
             get { return HSV.Value; }
-            set { HSV.Value = value; RaisePropertyChanged("Value");  RaisePropertyChanged("SelectedColor"); RaisePropertyChanged("CrosshairPosition"); }
+            set { HSV.Value = value; RaisePropertyChanged("Value");  RaisePropertyChanged("SelectedColor"); RaisePropertyChanged("HSV");RaisePropertyChanged("CrosshairPosition"); }
         }
 
         private bool enableAlpha;

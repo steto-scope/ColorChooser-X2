@@ -11,43 +11,48 @@
             <conv:PointToMarginConverter x:Key="PointToMarginConverter" />
             <conv:PositionToStrokeColorConverter x:Key="PositionToStrokeColorConverter" />
         </Grid.Resources>
-        <Grid PreviewMouseDown="Grid_MouseDown" PreviewMouseMove="Grid_MouseMove" Background="Transparent">
-        <Rectangle Name="rgbRect" Margin="15" >
-            <Rectangle.Fill>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                    <GradientStopCollection>
-                        <GradientStop Color="#ffff0000" Offset="0" />
-                        <GradientStop Color="#ffffff00" Offset="0.1666666666666666" />
-                        <GradientStop Color="#ff00ff00" Offset="0.3333333333333333" />
-                        <GradientStop Color="#ff00ffff" Offset="0.5" />
-                        <GradientStop Color="#ff0000ff" Offset="0.6666666666666666" />
-                        <GradientStop Color="#ffff00ff" Offset="0.8333333333333333" />
-                        <GradientStop Color="#ffff0000" Offset="1.0" />
-                    </GradientStopCollection>
-                </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
-        <Rectangle Name="saturationRect" Margin="15">
-            <Rectangle.Fill>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStopCollection>
-                        <GradientStop Color="#00000000" Offset="0.0" />
-                        <GradientStop Color="#ff000000" Offset="1.0" />
-                    </GradientStopCollection>
-                </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
-        <Ellipse Width="11" Height="11" StrokeThickness="1" VerticalAlignment="Top" Margin="{Binding CrosshairPosition, Converter={StaticResource PointToMarginConverter}}"  HorizontalAlignment="Left">
-            <Ellipse.Fill>
-                <SolidColorBrush Color="{Binding SelectedColor}" />
-            </Ellipse.Fill>
-            <Ellipse.Stroke>
-                <MultiBinding Converter="{StaticResource PositionToStrokeColorConverter}">
-                    <Binding ElementName="rgbRect" Path="ActualHeight" />
-                    <Binding Path="CrosshairPosition" />
-                </MultiBinding>
-            </Ellipse.Stroke>
-        </Ellipse>
-        </Grid>
+        
+            <Grid PreviewMouseDown="Grid_MouseDown" PreviewMouseMove="Grid_MouseMove" Background="Transparent">
+            <Border Margin="15" >
+                <Rectangle Name="rgbRect"  >
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStopCollection>
+                                <GradientStop Color="#ffff0000" Offset="0" />
+                                <GradientStop Color="#ffffff00" Offset="0.1666666666666666" />
+                                <GradientStop Color="#ff00ff00" Offset="0.3333333333333333" />
+                                <GradientStop Color="#ff00ffff" Offset="0.5" />
+                                <GradientStop Color="#ff0000ff" Offset="0.6666666666666666" />
+                                <GradientStop Color="#ffff00ff" Offset="0.8333333333333333" />
+                                <GradientStop Color="#ffff0000" Offset="1.0" />
+                            </GradientStopCollection>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Border>
+            <Border Margin="15">
+                <Rectangle Name="saturationRect">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStopCollection>
+                                <GradientStop Color="#00000000" Offset="0.0" />
+                                <GradientStop Color="#ff000000" Offset="1.0" />
+                            </GradientStopCollection>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Border>
+            <Ellipse Width="11" Height="11" StrokeThickness="1" VerticalAlignment="Top" Margin="{Binding CrosshairPosition, Converter={StaticResource PointToMarginConverter}}"  HorizontalAlignment="Left">
+                    <Ellipse.Fill>
+                        <SolidColorBrush Color="{Binding SelectedColor}" />
+                    </Ellipse.Fill>
+                    <Ellipse.Stroke>
+                        <MultiBinding Converter="{StaticResource PositionToStrokeColorConverter}">
+                            <Binding ElementName="rgbRect" Path="ActualHeight" />
+                            <Binding Path="CrosshairPosition" />
+                        </MultiBinding>
+                    </Ellipse.Stroke>
+                </Ellipse>
+            </Grid>
     </Grid>
 </UserControl>
