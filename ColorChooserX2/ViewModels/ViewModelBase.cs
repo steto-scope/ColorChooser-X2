@@ -6,6 +6,9 @@ using System.ComponentModel;
 
 namespace ColorChooserX2.ViewModels
 {
+    /// <summary>
+    /// Baseclass for all ViewModels
+    /// </summary>
     public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

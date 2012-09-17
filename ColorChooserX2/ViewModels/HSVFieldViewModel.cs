@@ -10,6 +10,9 @@ using ColorChooserX2.Extensions;
 
 namespace ColorChooserX2.ViewModels
 {
+    /// <summary>
+    /// ViewModel for the HSV-Field Color Chooser
+    /// </summary>
     public class HSVFieldViewModel : ViewModelBase, IColorChooser
     {
         private double width;
@@ -26,13 +29,18 @@ namespace ColorChooserX2.ViewModels
         }
 
         private HSVColor hovercolor;
-
+        /// <summary>
+        /// Color under the Mouse
+        /// </summary>
         public Color HoverColor
         {
             get { return hovercolor.ToColor(); }
             private set { hovercolor = value.ToHSV();  RaisePropertyChanged("HoverColor"); }
         }
 
+        /// <summary>
+        /// Current Selected Color (as HSV)
+        /// </summary>
         public HSVColor HSV
         {
             get { return selectedcolor; }
@@ -40,32 +48,42 @@ namespace ColorChooserX2.ViewModels
         }
 
         private HSVColor selectedcolor;
-
+        /// <summary>
+        /// Current Selected Color (as RGB)
+        /// </summary>
         public Color SelectedColor
         {
             get { return selectedcolor.ToColor(); }
             set { selectedcolor = value.ToHSV(); RaisePropertyChanged("SelectedColor"); RaisePropertyChanged("NormalizedHue"); RaisePropertyChanged("Saturation"); RaisePropertyChanged("NormalizedAlpha");RaisePropertyChanged("HSV"); RaisePropertyChanged("CrosshairPosition"); }
         }
 
-
+        /// <summary>
+        /// Current Saturation
+        /// </summary>
         public double Saturation
         {
             get { return HSV.Saturation; }
             set { HSV.Saturation = 1-value; RaisePropertyChanged("Saturation"); RaisePropertyChanged("NormalizedHue");  RaisePropertyChanged("SelectedColor");RaisePropertyChanged("HSV");RaisePropertyChanged("CrosshairPosition"); }
         }
-
+        /// <summary>
+        /// Current Hue
+        /// </summary>
         public double NormalizedHue
         {
             get { return HSV.NormalizedHue; }
             set { HSV.NormalizedHue = value; RaisePropertyChanged("NormalizedHue");  RaisePropertyChanged("SelectedColor");RaisePropertyChanged("HSV"); RaisePropertyChanged("CrosshairPosition"); }
         }
-
+        /// <summary>
+        /// Current Alpha
+        /// </summary>
         public double NormalizedAlpha
         {
             get { return HSV.NormalizedAlpha; }
             set { HSV.NormalizedAlpha = 1-value; RaisePropertyChanged("NormalizedAlpha"); RaisePropertyChanged("SelectedColor"); RaisePropertyChanged("HSV");RaisePropertyChanged("CrosshairPosition"); }
         }
-
+        /// <summary>
+        /// Current Value
+        /// </summary>
         public double Value
         {
             get { return HSV.Value; }
@@ -73,26 +91,32 @@ namespace ColorChooserX2.ViewModels
         }
 
         private bool enableAlpha;
-
+        /// <summary>
+        /// true, if the Slider for the Alpha-Channel is visible
+        /// </summary>
         public bool EnableAlphaChannel
         {
             get { return enableAlpha; }
             set { enableAlpha = value; RaisePropertyChanged("EnableAlphaChannel"); }
         }
 
-
+        /// <summary>
+        /// Position of the Crosshair of the Field
+        /// </summary>
         public Point CrosshairPosition
         {
             get 
             {
                 var x = HSV.NormalizedHue * Width;
                 var y = HSV.Value * Height;
-                //Console.WriteLine((15 + x - 5) + "  " + (15 + Height - 5)+ " "+HSV.NormalizedHue);
                 return new Point(15+x-5, 15+Height-y-5);
             }
         }
 
         private ICommand hovercolorchangedcommand;
+        /// <summary>
+        /// Command to change the HoverColor by View
+        /// </summary>
         public System.Windows.Input.ICommand HoverColorChangedCommand
         {
             get
@@ -105,11 +129,12 @@ namespace ColorChooserX2.ViewModels
 
         private void OnHoverColorChanged(object parameter)
         {
-            if (parameter is Point)
+            if (parameter is Point) //position of the crosshair
             {
                 Point p = (Point)parameter;
                 Color old = HoverColor;
 
+                //modify the current hovercolor
                 hovercolor.NormalizedHue = p.X / Width;
                 hovercolor.Value = 1 - p.Y / Height;
                 hovercolor.Saturation = Saturation;
@@ -121,6 +146,9 @@ namespace ColorChooserX2.ViewModels
             }
         }
 
+        /// <summary>
+        /// Creates a new View Model.
+        /// </summary>
         public HSVFieldViewModel()
         {
             HSV = new HSVColor(0, 1, 1, 255);
@@ -148,6 +176,9 @@ namespace ColorChooserX2.ViewModels
         }
 
         private ICommand selectedcolorchangedcommand;
+        /// <summary>
+        /// Command to change the Selected Color by the View
+        /// </summary>
         public System.Windows.Input.ICommand SelectedColorChangedCommand
         {
             get
@@ -158,9 +189,13 @@ namespace ColorChooserX2.ViewModels
             }
         }
 
-
+        /// <summary>
+        /// Will be fired if HoverColor has been changed
+        /// </summary>
         public event EventHandler<ColorChangedEventArgs> HoverColorChanged;
-
+        /// <summary>
+        /// Will be fired if SelectedColor has been changed
+        /// </summary>
         public event EventHandler<ColorChangedEventArgs> SelectedColorChanged;
     }
 }

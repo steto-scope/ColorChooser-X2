@@ -79,7 +79,7 @@ namespace ColorChooserX2.Views.Components
                     }
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 
             }

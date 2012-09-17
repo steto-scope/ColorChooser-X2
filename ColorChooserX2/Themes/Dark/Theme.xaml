@@ -3,7 +3,7 @@
 
     <SolidColorBrush Color="White" x:Key="SpectrumSliderCrosshairBrush" />
     <SolidColorBrush Color="Black" x:Key="SpectrumSliderCrosshairStrokeBrush" />
-    <SolidColorBrush Color="#252525" x:Key="ChooserBackgroundBrush" />
+    <SolidColorBrush Color="#454545" x:Key="ChooserBackgroundBrush" />
     
     <Style TargetType="{x:Type Polygon}">
         <Setter Property="Fill" Value="{StaticResource SpectrumSliderCrosshairBrush}" />
