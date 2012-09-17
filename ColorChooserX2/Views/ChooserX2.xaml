@@ -5,12 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:c="clr-namespace:ColorChooserX2.Views.Components"
              xmlns:v="clr-namespace:ColorChooserX2.Views"
+             xmlns:vm="clr-namespace:ColorChooserX2.ViewModels"
              xmlns:conv="clr-namespace:ColorChooserX2.Views.Converter"
              mc:Ignorable="d" Background="Transparent"
+             d:DataContext="{d:DesignInstance Type=vm:HSVFieldViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.Resources>
             <conv:HueToColorConverter x:Key="HueToColorConverter" />
+            <conv:ValueToColorConverter x:Key="ValueToColorConverter" />
             <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
             <conv:ColumnWidthConverter x:Key="ColumnWidthConverter" />
         </Grid.Resources>
@@ -29,8 +32,8 @@
                                 <c:SpectrumSlider Margin="0,8,0,8" VerticalAlignment="Stretch" HorizontalAlignment="Center" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.Saturation,Mode=TwoWay}" Grid.Column="1">
                                     <c:SpectrumSlider.BarBrush>
                                         <LinearGradientBrush>
-                                            <GradientStop Color="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.NormalizedHue, Converter={StaticResource HueToColorConverter}}" Offset="0" />
-                                            <GradientStop Color="#808080" Offset="1" />
+                                            <GradientStop Color="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.HSV, Converter={StaticResource HueToColorConverter}}" Offset="0" />
+                                            <GradientStop Color="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.Value, Converter={StaticResource ValueToColorConverter}}" Offset="1" />
                                         </LinearGradientBrush>
                                     </c:SpectrumSlider.BarBrush>
                                 </c:SpectrumSlider>

@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Windows.Data;
 using ColorChooserX2.Util;
+using System.Windows.Media;
 
 namespace ColorChooserX2.Views.Converter
 {
-    class HueToColorConverter : IValueConverter
+    class ValueToColorConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            HSVColor hsv = (HSVColor)value;
-            return new HSVColor(hsv.NormalizedHue, 1, hsv.Value, 255).ToColor();
+            return Color.FromRgb((byte)(((double)value)*255),(byte)(((double)value)*255), (byte)(((double)value)*255));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
