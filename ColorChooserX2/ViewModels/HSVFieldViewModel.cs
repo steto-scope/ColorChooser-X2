@@ -30,7 +30,7 @@ namespace ColorChooserX2.ViewModels
         public Color HoverColor
         {
             get { return hovercolor.ToColor(); }
-            set { hovercolor = value.ToHSV();  RaisePropertyChanged("HoverColor"); }
+            private set { hovercolor = value.ToHSV();  RaisePropertyChanged("HoverColor"); }
         }
 
         public HSVColor HSV
@@ -44,7 +44,7 @@ namespace ColorChooserX2.ViewModels
         public Color SelectedColor
         {
             get { return selectedcolor.ToColor(); }
-            set { selectedcolor = value.ToHSV(); RaisePropertyChanged("SelectedColor"); RaisePropertyChanged("NormalizedHue"); RaisePropertyChanged("Saturation"); RaisePropertyChanged("CrosshairPosition"); }
+            set { selectedcolor = value.ToHSV(); RaisePropertyChanged("SelectedColor"); RaisePropertyChanged("NormalizedHue"); RaisePropertyChanged("Saturation"); RaisePropertyChanged("NormalizedAlpha"); RaisePropertyChanged("CrosshairPosition"); }
         }
 
 
@@ -60,10 +60,24 @@ namespace ColorChooserX2.ViewModels
             set { HSV.NormalizedHue = value; RaisePropertyChanged("NormalizedHue");  RaisePropertyChanged("SelectedColor"); RaisePropertyChanged("CrosshairPosition"); }
         }
 
+        public double NormalizedAlpha
+        {
+            get { return HSV.NormalizedAlpha; }
+            set { HSV.NormalizedAlpha = 1-value; RaisePropertyChanged("NormalizedAlpha"); RaisePropertyChanged("SelectedColor"); RaisePropertyChanged("CrosshairPosition"); }
+        }
+
         public double Value
         {
             get { return HSV.Value; }
             set { HSV.Value = value; RaisePropertyChanged("Value");  RaisePropertyChanged("SelectedColor"); RaisePropertyChanged("CrosshairPosition"); }
+        }
+
+        private bool enableAlpha;
+
+        public bool EnableAlphaChannel
+        {
+            get { return enableAlpha; }
+            set { enableAlpha = value; RaisePropertyChanged("EnableAlphaChannel"); }
         }
 
 
@@ -111,6 +125,7 @@ namespace ColorChooserX2.ViewModels
         {
             HSV = new HSVColor(0, 1, 1, 255);
             hovercolor = new HSVColor(0, 1, 1, 255);
+            EnableAlphaChannel = false;
         }
 
         private void OnSelectedColorChanged(object parameter)

@@ -11,7 +11,10 @@
             <conv:PointToMarginConverter x:Key="PointToMarginConverter" />
         </Grid.Resources>
         <Border BorderBrush="Black" BorderThickness="1" Margin="4,10,4,10">
-            <Rectangle Name="bar" Width="20" Fill="{Binding BarGradient}" />
+            <Grid>
+            <Rectangle Name="bar" Width="20" Fill="{Binding BarBrush}" />
+            <Rectangle Name="bar2" Width="20" Fill="{Binding Bar2Brush}" />
+            </Grid>
         </Border>
         <Polygon Stroke="White" StrokeThickness="1" Points="0,0 0,12 6,6"  Fill="Black" HorizontalAlignment="Left" Margin="{Binding CrosshairPosition, Converter={StaticResource PointToMarginConverter},ConverterParameter=4, Mode=TwoWay}" />
         <Polygon Stroke="White" StrokeThickness="1" Points="0,6 6,0 6,12 " Fill="Black" HorizontalAlignment="Right"  Margin="{Binding CrosshairPosition, Converter={StaticResource PointToMarginConverter},ConverterParameter=4,Mode=TwoWay}" />

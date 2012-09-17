@@ -105,7 +105,6 @@ namespace ColorChooserX2.Util
 
 
 
-
             return hsv;
 
         }

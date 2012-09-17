@@ -64,6 +64,8 @@
     <Compile Include="Views\Components\SpectrumSlider.xaml.cs">
       <DependentUpon>SpectrumSlider.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Converter\BoolToVisibilityConverter.cs" />
+    <Compile Include="Views\Converter\ColumnWidthConverter.cs" />
     <Compile Include="Views\Converter\HueToColorConverter.cs" />
     <Compile Include="Views\Converter\PointToMarginConverter.cs" />
     <Compile Include="Views\Converter\PositionToStrokeColorConverter.cs" />

@@ -82,17 +82,26 @@ namespace ColorChooserX2.Views.Components
             DependencyProperty.Register("CrosshairPosition", typeof(Point), typeof(SpectrumSlider), new UIPropertyMetadata(new Point(0,0)));
 
 
-        
-
-        public LinearGradientBrush BarGradient
+         public Brush Bar2Brush
         {
-            get { return (LinearGradientBrush)GetValue(BarGradientProperty); }
+            get { return (Brush)GetValue(Bar2GradientProperty); }
+            set { SetValue(Bar2GradientProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for BarGradient.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty Bar2GradientProperty = 
+            DependencyProperty.Register("Bar2Brush", typeof(Brush), typeof(SpectrumSlider), new UIPropertyMetadata(new SolidColorBrush()));
+
+
+        public Brush BarBrush
+        {
+            get { return (Brush)GetValue(BarGradientProperty); }
             set { SetValue(BarGradientProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for BarGradient.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty BarGradientProperty = 
-            DependencyProperty.Register("BarGradient", typeof(LinearGradientBrush), typeof(SpectrumSlider), new UIPropertyMetadata(new LinearGradientBrush()));
+            DependencyProperty.Register("BarBrush", typeof(Brush), typeof(SpectrumSlider), new UIPropertyMetadata(new SolidColorBrush()));
 
 
         static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
