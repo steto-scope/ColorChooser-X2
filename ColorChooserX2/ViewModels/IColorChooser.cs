@@ -11,7 +11,7 @@ namespace ColorChooserX2.ViewModels
 {
     public interface IColorChooser
     {
-        Color HoverColor { get; set; }
+        Color HoverColor { get; }
         Color SelectedColor { get; set; }
         Point CrosshairPosition { get;  }
         ICommand HoverColorChangedCommand { get;  }

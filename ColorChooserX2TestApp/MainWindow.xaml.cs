@@ -23,12 +23,14 @@ namespace ColorChooserX2TestApp
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             IColorChooser c = (IColorChooser)chooser.DataContext;
-            c.SelectedColor = Colors.Salmon;
+            c.SelectedColor = Color.FromArgb(128, 18, 200, 155);
+            ((HSVFieldViewModel)c).EnableAlphaChannel = true;
         }
     }
 }

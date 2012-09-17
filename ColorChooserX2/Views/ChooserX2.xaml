@@ -11,6 +11,8 @@
     <Grid>
         <Grid.Resources>
             <conv:HueToColorConverter x:Key="HueToColorConverter" />
+            <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <conv:ColumnWidthConverter x:Key="ColumnWidthConverter" />
         </Grid.Resources>
         <ContentPresenter Content="{Binding}" Name="content" >
             <ContentPresenter.ContentTemplateSelector>
@@ -21,15 +23,51 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="45" />
+                                    <ColumnDefinition Width="{Binding EnableAlphaChannel,Converter={StaticResource ColumnWidthConverter},ConverterParameter=45}" />
                                 </Grid.ColumnDefinitions>
                                 <c:HSVColorField DataContext="{Binding}"  Grid.Column="0"/>
                                 <c:SpectrumSlider Margin="0,8,0,8" VerticalAlignment="Stretch" HorizontalAlignment="Center" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.Saturation,Mode=TwoWay}" Grid.Column="1">
-                                    <c:SpectrumSlider.BarGradient>
+                                    <c:SpectrumSlider.BarBrush>
                                         <LinearGradientBrush>
                                             <GradientStop Color="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.NormalizedHue, Converter={StaticResource HueToColorConverter}}" Offset="0" />
                                             <GradientStop Color="#808080" Offset="1" />
                                         </LinearGradientBrush>
-                                    </c:SpectrumSlider.BarGradient>
+                                    </c:SpectrumSlider.BarBrush>
+                                </c:SpectrumSlider>
+                                <c:SpectrumSlider Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.EnableAlphaChannel,Converter={StaticResource BoolToVisibilityConverter}}" Margin="0,8,0,8" VerticalAlignment="Stretch" HorizontalAlignment="Center" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=DataContext.NormalizedAlpha,Mode=TwoWay}" Grid.Column="2">
+                                    <c:SpectrumSlider.Bar2Brush>
+                                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                            <GradientStop Color="White" Offset="0" />
+                                            <GradientStop Color="Transparent" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </c:SpectrumSlider.Bar2Brush>
+                                        <c:SpectrumSlider.BarBrush>
+                                        <DrawingBrush Viewport="0,0,0.5,0.05" TileMode="Tile">
+                                            <DrawingBrush.Drawing>
+                                                <DrawingGroup>
+                                                    <GeometryDrawing Brush="White">
+                                                        <GeometryDrawing.Geometry>
+                                                            <RectangleGeometry Rect="0,0,100,100"  />
+                                                        </GeometryDrawing.Geometry>
+                                                    </GeometryDrawing>
+                                                    <GeometryDrawing >
+                                                        <GeometryDrawing.Geometry>
+                                                            <GeometryGroup>
+                                                                <RectangleGeometry Rect="0,0,50,50" />
+                                                                <RectangleGeometry Rect="50,50,50,50" />
+                                                            </GeometryGroup>
+                                                        </GeometryDrawing.Geometry>
+                                                        <GeometryDrawing.Brush >
+                                                            <LinearGradientBrush>
+                                                                <GradientStop Offset="0.0" Color="Black" />
+                                                                <GradientStop Offset="1.0" Color="Gray" />
+                                                            </LinearGradientBrush>
+                                                        </GeometryDrawing.Brush>
+                                                    </GeometryDrawing>
+                                                </DrawingGroup>
+                                            </DrawingBrush.Drawing>
+                                        </DrawingBrush>
+                                    </c:SpectrumSlider.BarBrush>
                                 </c:SpectrumSlider>
                             </Grid>
                         </DataTemplate>
