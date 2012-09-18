@@ -11,5 +11,6 @@
                 <t:DarkTheme />
             </ccx2:ChooserX2.Theme>
         </ccx2:ChooserX2>
+        <TextBlock Text="{Binding ElementName=chooser, Path=DataContext.SelectedColor}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2" />
     </Grid>
 </Window>

@@ -122,12 +122,15 @@ namespace ColorChooserX2.ViewModels
             get
             {
                 if (hovercolorchangedcommand == null)
-                    hovercolorchangedcommand = new RelayCommand(p => OnHoverColorChanged(p), p=>true);
+                    hovercolorchangedcommand = new RelayCommand(p => OnHoverColorChangedCommand(p), p=>true);
                 return hovercolorchangedcommand;
             }
         }
-
-        private void OnHoverColorChanged(object parameter)
+        /// <summary>
+        /// Handler for HoverColorChanged-Command
+        /// </summary>
+        /// <param name="parameter"></param>
+        private void OnHoverColorChangedCommand(object parameter)
         {
             if (parameter is Point) //position of the crosshair
             {
@@ -139,11 +142,20 @@ namespace ColorChooserX2.ViewModels
                 hovercolor.Value = 1 - p.Y / Height;
                 hovercolor.Saturation = Saturation;
 
-                RaisePropertyChanged("HoverColor");
-                if (HoverColorChanged != null)
-                    HoverColorChanged(this, new ColorChangedEventArgs(old, SelectedColor));
+                OnHoverColorChanged(old);
                 
             }
+        }
+
+        /// <summary>
+        /// Informs Listeners
+        /// </summary>
+        /// <param name="old"></param>
+        private void OnHoverColorChanged(Color old)
+        {
+            RaisePropertyChanged("HoverColor");
+                if (HoverColorChanged != null)
+                    HoverColorChanged(this, new ColorChangedEventArgs(old, HoverColor));
         }
 
         /// <summary>
@@ -156,7 +168,12 @@ namespace ColorChooserX2.ViewModels
             EnableAlphaChannel = false;
         }
 
-        private void OnSelectedColorChanged(object parameter)
+
+        /// <summary>
+        /// Handler for SelectedColorChanged-Command
+        /// </summary>
+        /// <param name="parameter"></param>
+        private void OnSelectedColorChangedCommand(object parameter)
         {
             if (parameter is Point)
             {
@@ -169,11 +186,20 @@ namespace ColorChooserX2.ViewModels
                 NormalizedHue = hue;
                 Value = 1 - light;
 
-                if (SelectedColorChanged != null)
-                    SelectedColorChanged(this, new ColorChangedEventArgs(old, SelectedColor));
+
+                OnSelectedColorChanged(old);
 
             }
         }
+
+        private void  OnSelectedColorChanged(Color old)
+        {
+            RaisePropertyChanged("SelectedColor");
+            RaisePropertyChanged("HSV");
+             if (SelectedColorChanged != null)
+                    SelectedColorChanged(this, new ColorChangedEventArgs(old, SelectedColor));
+        }
+
 
         private ICommand selectedcolorchangedcommand;
         /// <summary>
@@ -184,7 +210,7 @@ namespace ColorChooserX2.ViewModels
             get
             {
                 if (selectedcolorchangedcommand == null)
-                    selectedcolorchangedcommand = new RelayCommand(p => OnSelectedColorChanged(p), p=>true);
+                    selectedcolorchangedcommand = new RelayCommand(p => OnSelectedColorChangedCommand(p), p=>true);
                 return selectedcolorchangedcommand;
             }
         }
