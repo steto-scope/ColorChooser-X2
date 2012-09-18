@@ -24,7 +24,16 @@ namespace ColorChooserX2TestApp
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = chooser.DataContext;
             
+        }
+
+        public IEnumerable<Theme> Themes
+        {
+            get
+            {
+                return new Theme[] { new DarkTheme(), new DefaultTheme()};
+            }
         }
 
     }

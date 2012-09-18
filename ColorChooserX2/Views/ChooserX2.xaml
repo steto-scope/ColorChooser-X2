@@ -10,7 +10,7 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=vm:HSVFieldViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Border Style="{StaticResource ColorChooserControlBorderStyle}">
+    <Border Style="{DynamicResource ColorChooserControlBorderStyle}">
     <Grid>
         <Grid.Resources>
             <conv:HueToColorConverter x:Key="HueToColorConverter" />

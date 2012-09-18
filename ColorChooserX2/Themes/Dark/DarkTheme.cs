@@ -11,5 +11,11 @@ namespace ColorChooserX2.Themes
         {
             return new Uri("/ColorChooserX2;component/Themes/Dark/Theme.xaml",UriKind.Relative);  
         }
+
+        public override string ToString()
+        {
+            return "Dark";
+        }
+
     }
 }
