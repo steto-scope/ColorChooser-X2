@@ -5,12 +5,38 @@
         xmlns:ccx2="clr-namespace:ColorChooserX2.Views;assembly=ColorChooserX2"
         
         Title="MainWindow" Height="350" Width="525">
-    <Grid >
-        <ccx2:ChooserX2 x:Name="chooser" Margin="20">
-            <ccx2:ChooserX2.Theme>
-                <t:DarkTheme />
-            </ccx2:ChooserX2.Theme>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="5" >
+            <CheckBox Content="Alpha-Channel" IsChecked="{Binding EnableAlphaChannel}" Margin="0,0,10,0" VerticalAlignment="Center" />
+            <TextBlock Text="Selected: " VerticalAlignment="Center" />
+            <StackPanel Margin="0,0,10,0">
+                <Rectangle Height="14">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="{Binding SelectedColor}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock Text="{Binding SelectedColor}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="60">
+            </TextBlock>
+            </StackPanel>
+            
+            <TextBlock Text="Hover: " VerticalAlignment="Center" />
+            <StackPanel Margin="0,0,10,0">
+                <Rectangle Height="14">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="{Binding HoverColor}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock Text="{Binding HoverColor}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="60">
+                </TextBlock>
+            </StackPanel>
+
+        </StackPanel>
+        <ccx2:ChooserX2 x:Name="chooser" Margin="20" Grid.Row="1">
         </ccx2:ChooserX2>
-        <TextBlock Text="{Binding ElementName=chooser, Path=DataContext.SelectedColor}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2" />
+        
     </Grid>
 </Window>

@@ -125,6 +125,7 @@ namespace ColorChooserX2.Views.Components
         {
             if(bar.ActualHeight!=0)
             HoverValue = (p.Y / bar.ActualHeight);
+
         }
 
         private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
